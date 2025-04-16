@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do u wanna come mane?</title>
+
+  <!-- Style Section -->
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #ffd6f3, #d0c7f5);
+      color: #4b0082;
+      padding: 20px;
+      text-align: center;
+      image-rendering: pixelated;
+    }
+
+    .question {
+      margin-top: 30px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      padding: 10px;
+      margin: 5px;
+      border: 2px solid #8b5cf6;
+      background-color: #ffc1f3;
+      color: #4b0082;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 80%;
+      margin-top: 10px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      border: 2px solid #8b5cf6;
+      background-color: #fff0f5;
+      color: #4b0082;
+    }
+
+    .animal {
+      width: 80px;
+      image-rendering: pixelated;
+    }
+
+    .final {
+      font-size: 14px;
+      background-color: #ffc1f3;
+      padding: 20px;
+      border: 3px dashed #8b5cf6;
+      display: inline-block;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  </style>
+</head>
+
+<body>
+
+  <!-- Cute Pixel Animals -->
+  <div class="decor">
+    <img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/0138ff4c3a977a5.png" class="animal" alt="cat">
+    <img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/3d71d5a9d2c054e.png" class="animal" alt="dog">
+  </div>
+
+  <!-- First Question -->
+  <h1>Do u wanna come mane?</h1>
+  <button onclick="showYes()">Yes</button>
+  <button onclick="showNo()">No</button>
+
+  <!-- If Yes -->
+  <div id="yesPart" class="question hidden">
+    <h2>Yippi! What oota would u like to eat?</h2>
+    <button onclick="gotoDessert()">Leon's</button>
+    <button onclick="gotoDessert()">Grub Monkey</button>
+    <button onclick="gotoDessert()">Ambur Star Biryani</button><br>
+    Suggestion box: <input type="text" id="foodSuggestion"><br>
+    <button onclick="gotoDessert()">Next</button>
+  </div>
+
+  <!-- If No -->
+  <div id="noPart" class="question hidden">
+    <h2>Okiiii! Where would u like to go?</h2>
+    Suggestion: <input type="text" id="placeSuggestion"><br>
+    <button onclick="gotoDessert()">Next</button>
+  </div>
+
+  <!-- Dessert -->
+  <div id="dessertPart" class="question hidden">
+    <h2>What would you like to have for dessert?</h2>
+    <button onclick="showAddOn()">Corner House</button>
+    <button onclick="showAddOn()">Polar Bear</button>
+    <button onclick="showAddOn()">Softie</button><br>
+    Suggestion: <input type="text" id="dessertSuggestion"><br>
+    <button onclick="showAddOn()">Next</button>
+  </div>
+
+  <!-- Add Something? -->
+  <div id="addOnPart" class="question hidden">
+    <h2>Is there something u wanna add?</h2>
+    <button onclick="showFinalYes()">Yes</button>
+    <button onclick="showFinalNo()">No</button>
+  </div>
+
+  <!-- Extra Suggestion Input -->
+  <div id="addOnInput" class="question hidden">
+    Suggestion: <input type="text" id="extraSuggestion"><br>
+    <button onclick="showFinalMessage()">Done</button>
+  </div>
+
+  <!-- Final Message -->
+  <div id="finalMessage" class="question hidden final">
+    <h2>Yippi! See u tmr!<br>I'm super excited 💖</h2>
+    <img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/cc3d01b58ecdddf.png" class="animal" alt="bunny">
+  </div>
+
+  <!-- Music -->
+  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2023/03/14/audio_874cd2296e.mp3?filename=cute-background-music-141120.mp3"></audio>
+
+  <!-- Script Section -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      hideAll();
+    });
+
+    function hideAll() {
+      const ids = ["yesPart", "noPart", "dessertPart", "addOnPart", "addOnInput", "finalMessage"];
+      ids.forEach(id => document.getElementById(id).classList.add("hidden"));
+    }
+
+    function showYes() {
+      hideAll();
+      document.getElementById("yesPart").classList.remove("hidden");
+    }
+
+    function showNo() {
+      hideAll();
+      document.getElementById("noPart").classList.remove("hidden");
+    }
+
+    function gotoDessert() {
+      hideAll();
+      document.getElementById("dessertPart").classList.remove("hidden");
+    }
+
+    function showAddOn() {
+      hideAll();
+      document.getElementById("addOnPart").classList.remove("hidden");
+    }
+
+    function showFinalYes() {
+      hideAll();
+      document.getElementById("addOnInput").classList.remove("hidden");
+    }
+
+    function showFinalNo() {
+      showFinalMessage();
+    }
+
+    function showFinalMessage() {
+      hideAll();
+      document.getElementById("finalMessage").classList.remove("hidden");
+      document.getElementById("bgMusic").play();
+    }
+  </script>
+
+</body>
+</html>
