@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do u wanna come mane?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #ffd6f3, #d0c7f5);
+      color: #4b0082;
+      padding: 20px;
+      text-align: center;
+      image-rendering: pixelated;
+    }
+
+    h1, h2 {
+      font-size: 16px;
+    }
+
+    .question {
+      margin-top: 30px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      padding: 10px;
+      margin: 5px;
+      border: 2px solid #8b5cf6;
+      background-color: #ffc1f3;
+      color: #4b0082;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 80%;
+      margin-top: 10px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      border: 2px solid #8b5cf6;
+      background-color: #fff0f5;
+      color: #4b0082;
+    }
+
+    .pixel-heart {
+      background: url('https://i.imgur.com/N5uCbDu.png') no-repeat center;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+    }
+
+    .animated-heart {
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-8px) scale(1.1); }
+    }
+
+    .animal {
+      width: 80px;
+      height: auto;
+      image-rendering: pixelated;
+    }
+
+    .decor {
+      margin: 10px;
+    }
+
+    .final {
+      font-size: 14px;
+      background-color: #ffc1f3;
+      padding: 20px;
+      border: 3px dashed #8b5cf6;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="decor">
+    <img src="https://i.imgur.com/Bd1ayUM.png" class="animal" alt="cat">
+    <span class="pixel-heart"></span>
+    <img src="https://i.imgur.com/KxO1hct.png" class="animal" alt="dog">
+  </div>
+
+  <h1>Do u wanna come mane?</h1>
+  <button onclick="showYes()">Yes</button>
+  <button onclick="showNo()">No</button>
+
+  <div id="yesPart" class="question hidden">
+    <h2>Yippi! What oota would u like to eat?</h2>
+    <button onclick="gotoDessert()">Leon's</button>
+    <button onclick="gotoDessert()">Grub Monkey</button>
+    <button onclick="gotoDessert()">Ambur Star Biryani</button><br>
+    Suggestion box: <input type="text" id="foodSuggestion"><br>
+    <button onclick="gotoDessert()">Next</button>
+  </div>
+
+  <div id="noPart" class="question hidden">
+    <h2>Okiiii! Where would u like to go?</h2>
+    Suggestion: <input type="text" id="placeSuggestion"><br>
+    <button onclick="gotoDessert()">Next</button>
+  </div>
+
+  <div id="dessertPart" class="question hidden">
+    <h2>What would you like to have for dessert?</h2>
+    <button onclick="showAddOn()">Corner House</button>
+    <button onclick="showAddOn()">Polar Bear</button>
+    <button onclick="showAddOn()">Softie</button><br>
+    Suggestion: <input type="text" id="dessertSuggestion"><br>
+    <button onclick="showAddOn()">Next</button>
+  </div>
+
+  <div id="addOnPart" class="question hidden">
+    <h2>Is there something u wanna add?</h2>
+    <button onclick="showFinalYes()">Yes</button>
+    <button onclick="showFinalNo()">No</button>
+  </div>
+
+  <div id="addOnInput" class="question hidden">
+    Suggestion: <input type="text" id="extraSuggestion"><br>
+    <button onclick="showFinalMessage()">Done</button>
+  </div>
+
+  <div id="finalMessage" class="question hidden final">
+    <h2>Yippi! See u tmr!<br>I'm super excited</h2>
+    <div class="decor">
+      <img src="https://i.imgur.com/JckP7KT.png" class="animal" alt="bunny">
+      <span class="pixel-heart animated-heart"></span>
+      <span class="pixel-heart animated-heart"></span>
+    </div>
+    <audio id="bgMusic" autoplay>
+      <source src="https://files.catbox.moe/1yufc1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function showYes() {
+      document.getElementById("yesPart").classList.remove("hidden");
+      document.getElementById("noPart").classList.add("hidden");
+      hideSectionsAfter("yesPart");
+    }
+
+    function showNo() {
+      document.getElementById("noPart").classList.remove("hidden");
+      document.getElementById("yesPart").classList.add("hidden");
+      hideSectionsAfter("noPart");
+    }
+
+    function gotoDessert() {
+      document.getElementById("dessertPart").classList.remove("hidden");
+      document.getElementById("yesPart").classList.add("hidden");
+      document.getElementById("noPart").classList.add("hidden");
+      hideSectionsAfter("dessertPart");
+    }
+
+    function showAddOn() {
+      document.getElementById("dessertPart").classList.add("hidden");
+      document.getElementById("addOnPart").classList.remove("hidden");
+      document.getElementById("addOnInput").classList.add("hidden");
+      document.getElementById("finalMessage").classList.add("hidden");
+    }
+
+    function showFinalYes() {
+      document.getElementById("addOnInput").classList.remove("hidden");
+      document.getElementById("addOnPart").classList.add("hidden");
+    }
+
+    function showFinalNo() {
+      showFinalMessage();
+    }
+
+    function showFinalMessage() {
+      document.getElementById("addOnPart").classList.add("hidden");
+      document.getElementById("addOnInput").classList.add("hidden");
+      document.getElementById("finalMessage").classList.remove("hidden");
+      document.getElementById("bgMusic").play();
+    }
+
+    function hideSectionsAfter(currentId) {
+      const ids = ["dessertPart", "addOnPart", "addOnInput", "finalMessage"];
+      ids.forEach(id => {
+        if (id !== currentId) {
+          document.getElementById(id).classList.add("hidden");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
